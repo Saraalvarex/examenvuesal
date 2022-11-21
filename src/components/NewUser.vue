@@ -72,7 +72,7 @@ export default {
        service.registro(this.newuser).then(result=> {
         console.log(result)
         this.mensaje="Registrado satisfactoriamente";
-        //this.$router.push("/login");
+        this.$router.push("/login");
        })
     }
  }

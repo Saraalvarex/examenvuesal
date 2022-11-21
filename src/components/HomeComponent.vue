@@ -7,7 +7,7 @@
         <h5 class="card-title">{{cubo.nombre}}</h5>
         <p class="card-text">{{cubo.modelo}}</p>
         <p class="card-text">{{cubo.marca}}</p>
-        <router-link class="btn btn-outline-primary" :to="'/compras/'+cubo.idCubo">➕ Añadir al carrito</router-link>
+        <button class="btn btn-outline-primary" @click="comprar(cubo.idCubo)">➕ Añadir al carrito</button>
       </div>
     </div>
   </div>
@@ -17,7 +17,8 @@
 <script>
 import ServiceCubos from './../services/ServiceCubos'
 const service = new ServiceCubos();
-
+import ServiceLogin from './../services/ServiceLogin'
+const serviceLogin = new ServiceLogin();
 export default {
  name: 'HomeComponent',
  data() {
@@ -26,7 +27,12 @@ export default {
  };
  },
  methods:{
-
+  comprar(id){
+    console.log(id)
+    serviceLogin.realizarCompra(id).then(result=>{
+      console.log(result)
+    })
+  }
  },
  mounted(){
     service.getCubos().then(result=> {
